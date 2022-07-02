@@ -1,10 +1,12 @@
 <template>
-	<h1 class="title">{{ operation }} - Level {{ level }}:</h1>
-	<div class="operations">
+	<div class="operations" v-if="rounds <= 10">
 		<span>{{ first }} + {{ second }}</span>
 		<input type="number" autofocus v-model="answer" @input="verifyAnswer" />
+		<p>{{ rounds }}/10</p>
 	</div>
-	<p>{{ rounds }}/10</p>
+	<div v-else>
+		<h1>averageTime: {{ averageTime }}</h1>
+	</div>
 </template>
 
 <script>
@@ -15,6 +17,10 @@
 				second: this.generateRandom(9, 1),
 				answer: "",
 				rounds: 0,
+
+				timer: 0,
+				averageTime: 0,
+				timeCounter: 0,
 			};
 		},
 		props: ["operation", "level"],
@@ -25,7 +31,13 @@
 			},
 			verifyAnswer() {
 				const result = this.first + this.second;
+
 				if (this.answer == result) {
+					if (this.rounds == 10) {
+						clearInterval(this.timeCounter);
+						console.log("aaa");
+						this.averageTime = this.timer / 10;
+					}
 					setTimeout(() => {
 						this.first = this.generateRandom(9, 1);
 						this.second = this.generateRandom(9, 1);
@@ -34,6 +46,11 @@
 					}, 200);
 				}
 			},
+		},
+		mounted() {
+			this.timeCounter = setInterval(() => {
+				this.timer += 0.1;
+			}, 100);
 		},
 	};
 </script>

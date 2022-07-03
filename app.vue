@@ -52,4 +52,19 @@
 		transform: scale(1.05);
 		transition: 0.2s ease-out;
 	}
+	button {
+		border: none;
+		font-size: 50px;
+		border-radius: 10px;
+		background-color: #bbe1fa;
+		transition: 0.2s ease-in;
+	}
+	button:hover {
+		cursor: pointer;
+		transform: scale(1.05);
+		transition: 0.2s ease-out;
+	}
+	i {
+		color: #0f4c75;
+	}
 </style>

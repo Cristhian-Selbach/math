@@ -1,11 +1,14 @@
 <template>
-	<div class="operations" v-if="rounds <= 10">
+	<div class="operations" v-if="rounds < 10">
 		<span>{{ first }} + {{ second }}</span>
 		<input type="number" autofocus v-model="answer" @input="verifyAnswer" />
 		<p>{{ rounds }}/10</p>
 	</div>
-	<div v-else>
-		<h1>averageTime: {{ averageTime }}</h1>
+	<div class="result" v-else>
+		<h1 class="title">Average Time: {{ averageTime.toFixed(2) }}s</h1>
+		<button @click="restart">
+			<i class="fa-solid fa-arrow-rotate-right"></i>
+		</button>
 	</div>
 </template>
 
@@ -26,6 +29,9 @@
 		props: ["operation", "level"],
 
 		methods: {
+			restart() {
+				this.$router.go(0);
+			},
 			generateRandom(max, min) {
 				return parseInt(Math.random() * (max - min) + min);
 			},
@@ -33,7 +39,7 @@
 				const result = this.first + this.second;
 
 				if (this.answer == result) {
-					if (this.rounds == 10) {
+					if (this.rounds + 1 == 10) {
 						clearInterval(this.timeCounter);
 						console.log("aaa");
 						this.averageTime = this.timer / 10;
@@ -79,5 +85,15 @@
 	p {
 		margin-top: 100px;
 		font-size: 25px;
+	}
+	.result {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	button {
+		margin-top: 100px;
+		width: 150px;
+		height: 90px;
 	}
 </style>

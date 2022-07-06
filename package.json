@@ -10,6 +10,8 @@
     "nuxt": "3.0.0-rc.4"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.1.9",
+    "pinia": "^2.0.14",
     "supertime": "^1.0.0"
   }
 }

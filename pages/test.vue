@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<Pratice operation="Addition" level="1" />
+		<Pratice />
 	</section>
 </template>
 

@@ -1,19 +1,34 @@
 <template>
-	<div class="operations" v-if="rounds < 10">
-		<span>{{ first }} + {{ second }}</span>
-		<input type="number" autofocus v-model="answer" @input="verifyAnswer" />
-		<p>{{ rounds }}/10</p>
-	</div>
-	<div class="result" v-else>
-		<h1 class="title">Average Time: {{ averageTime.toFixed(2) }}s</h1>
-		<button @click="restart">
-			<i class="fa-solid fa-arrow-rotate-right"></i>
-		</button>
-	</div>
+	<client-only>
+		<div class="operations" v-if="rounds < 10">
+			<span> {{ first }} + {{ second }}</span>
+			<input
+				type="number"
+				autofocus
+				v-model="answer"
+				@input="verifyAnswer"
+			/>
+			<p>{{ rounds }}/10</p>
+		</div>
+		<div class="result" v-else>
+			<h1 class="title">Average time: {{ averageTime.toFixed(2) }}s</h1>
+			<button @click="restart">
+				<i class="fa-solid fa-arrow-rotate-right"></i>
+			</button>
+		</div>
+	</client-only>
 </template>
 
 <script>
+	import { usePrefsStore } from "../store/prefs";
+
 	export default {
+		setup() {
+			const store = usePrefsStore();
+			return {
+				store,
+			};
+		},
 		data() {
 			return {
 				first: this.generateRandom(9, 1),
@@ -26,7 +41,6 @@
 				timeCounter: 0,
 			};
 		},
-		props: ["operation", "level"],
 
 		methods: {
 			restart() {
@@ -41,7 +55,6 @@
 				if (this.answer == result) {
 					if (this.rounds + 1 == 10) {
 						clearInterval(this.timeCounter);
-						console.log("aaa");
 						this.averageTime = this.timer / 10;
 					}
 					setTimeout(() => {

@@ -1,4 +1,8 @@
-<template></template>
+<template>
+	<section>
+		<Pratice />
+	</section>
+</template>
 
 <script>
 	export default {};

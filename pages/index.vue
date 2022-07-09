@@ -38,16 +38,16 @@
 		},
 		methods: {
 			addition() {
-				this.store.changeOpearation("Addiction");
+				this.store.setOpearation("Addiction");
 			},
 			subtraction() {
-				this.store.changeOpearation("Subtraction");
+				this.store.setOpearation("Subtraction");
 			},
 			multiplication() {
-				this.store.changeOpearation("Multiplication");
+				this.store.setOpearation("Multiplication");
 			},
 			division() {
-				this.store.changeOpearation("Division");
+				this.store.setOpearation("Division");
 			},
 		},
 	};

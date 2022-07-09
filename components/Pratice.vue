@@ -31,8 +31,8 @@
 		},
 		data() {
 			return {
-				first: this.generateRandom(9, 1),
-				second: this.generateRandom(9, 1),
+				first: this.numeralLenght(),
+				second: this.numeralLenght(),
 				answer: "",
 				rounds: 0,
 
@@ -63,6 +63,17 @@
 						this.answer = "";
 						this.rounds++;
 					}, 200);
+				}
+			},
+			numeralLenght() {
+				if (this.store.level == 1) {
+					return this.generateRandom(9, 1);
+				} else if (this.store.level == 2) {
+					return this.generateRandom(99, 10);
+				} else if (this.store.level == 3) {
+					return this.generateRandom(999, 100);
+				} else if (this.store.level == 4) {
+					return this.generateRandom(9999, 1000);
 				}
 			},
 		},

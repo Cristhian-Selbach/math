@@ -3,26 +3,26 @@
 		<h1 class="title">Choose the Level:</h1>
 
 		<div class="content">
-			<NuxtLink to="/test" class="option">
+			<div class="option">
 				<div class="container">
 					<span>1</span>
 				</div>
-			</NuxtLink>
-			<NuxtLink to="/test" class="option">
+			</div>
+			<div class="option">
 				<div class="container">
 					<span>2</span>
 				</div>
-			</NuxtLink>
-			<NuxtLink to="/test" class="option">
+			</div>
+			<div class="option">
 				<div class="container">
 					<span>3</span>
 				</div>
-			</NuxtLink>
-			<NuxtLink to="/test" class="option">
+			</div>
+			<div class="option">
 				<div class="container">
 					<span>4</span>
 				</div>
-			</NuxtLink>
+			</div>
 		</div>
 	</section>
 </template>
@@ -38,11 +38,13 @@
 			};
 		},
 		mounted() {
-			const elements = document.querySelectorAll(".option");
+			const elements = this.$el.querySelectorAll(".option");
 
 			elements.forEach((element, index) => {
 				element.addEventListener("click", () => {
 					this.store.changeLevel(index + 1);
+					console.log(this.store.level);
+					navigateTo("/test");
 				});
 			});
 		},

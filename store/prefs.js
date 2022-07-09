@@ -8,7 +8,7 @@ export const usePrefsStore = defineStore("prefs", {
 		};
 	},
 	actions: {
-		changeOpearation(operation) {
+		setOpearation(operation) {
 			this.operation = operation;
 		},
 		changeLevel(level) {
